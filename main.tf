@@ -43,5 +43,11 @@ resource "null_resource" "commands" {
 
     ]
   }
+}
 
+resource "aws_ami_from_instance" "ami" {
+  ami           = data.aws_ami.ami.image_id
+  instance_type = "t3.micro"
+  name          = "roboshop-ami-v1"
+  source_instance_id = aws_instance.ami.id
 }
