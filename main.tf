@@ -46,6 +46,8 @@ resource "null_resource" "commands" {
 }
 
 resource "aws_ami_from_instance" "ami" {
+
+  depends_on = [null_resource.commands]
   ami           = data.aws_ami.ami.image_id
   instance_type = "t3.micro"
   name          = "roboshop-ami-v1"
